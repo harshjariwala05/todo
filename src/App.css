@@ -1,0 +1,59 @@
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+form{
+  width: 1170px;
+  margin: auto;
+  display: flex;
+  gap: 20px;
+}
+
+form input{
+  flex-basis: 80%;
+  height: 40px;
+}
+
+form button{
+  flex-basis: 20%;
+}
+
+.outside{
+  width:1170px;
+  margin: auto;
+}
+
+.outside ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: 27px;
+}
+
+.outside ul li{
+   color: white;
+   padding: 10px;
+   text-align: left;
+   background-color: black;
+   position: relative;
+   font-size: 17px;
+   margin-bottom: 20px;
+  }
+
+.outside ul li span{
+  position: absolute;
+  right: 20px;
+}
+
+.completetodo{
+  text-decoration:line-through;
+  color: lime !important ;
+  background-color: purple !important;
+
+}
+
