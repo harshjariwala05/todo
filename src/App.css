@@ -1,104 +1,191 @@
-form {
-  width: 1170px;
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f6f8;
+}
+
+.App {
+  padding: 20px;
+  max-width: 500px;
+  max-height: 450px;
   margin: auto;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 50px;
+}
+
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
   display: flex;
-  gap: 20px;
+  justify-content: center;  
+  align-items: center;      
+  flex-direction: column;
 }
 
-form input {
-  flex-basis: 35%;
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  width: 100%;
+  max-width: 500px; 
+}
+
+.todo-form input {
+  width: 100%;
   height: 40px;
-  padding: 0 10px;
-  font-size: 16px;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
-form button {
-  flex-basis: 20%;
-  font-size: 16px;
+.todo-form button {
+  align-self: center;
+  width: 150px;
+  padding: 8px 16px;
   background-color: #007bff;
   color: white;
   border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.outside {
-  width: 1170px;
-  margin: auto;
-}
-
-.outside ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  margin-top: 27px;
-}
-
-.outside ul li {
-  color: black;
-  padding: 15px;
-  text-align: left;
-  background-color: #cbcbcb9c;
-  position: relative;
-  font-size: 17px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.outside ul li:hover {
-  background-color: powderblue;
-  /* color: white; */
-}
-
-.outside ul li .description {
-  display: block;
+  border-radius: 6px;
   font-size: 14px;
-  color: #ccc;
-  margin-top: 5px;
-}
-
-.outside ul li .status {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: bold;
-  color: yellowgreen;
-}
-
-.outside ul li span {
-  position: absolute;
-  top: 10px;
-  right: 20px;
   cursor: pointer;
-  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.todo-form button:hover {
+  background-color: #0056b3;
+}
+
+.todo-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  position: relative;
+  transition: transform 0.2s;
+  border-left: 8px solid transparent;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+}
+
+.status-text {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.status-todo {
+  background-color: #fff3cd;
+  border-left-color: #ffc107;
+}
+
+.status-progress {
+  background-color: #d1ecf1;
+  border-left-color: #17a2b8;
+}
+
+.status-qa {
+  background-color: #f8d7da;
+  border-left-color: #dc3545;
+}
+
+.status-done {
+  background-color: #d4edda;
+  border-left-color: #28a745;
 }
 
 .completetodo {
   text-decoration: line-through;
-  color: white !important;
-  background-color: #4cbf0a !important;
+  background-color: #d2f5ce !important;
 }
 
 .action-button {
+  position: absolute;
+  top: 20px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  text-decoration: none;
-}
-
-.action-button:hover {
-  text-decoration: underline;
 }
 
 .update {
+  right: 80px;
   color: green;
-  margin-right: 70px;
 }
 
 .delete {
+  right: 20px;
   color: red;
 }
 
-h1{
-  text-align: center;
+@media (max-width: 600px) {
+  .todo-form {
+    flex-direction: column;
+  }
+
+  .todo-form input,
+  .todo-form button {
+    width: 100%;
+  }
+}
+
+.todo-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.todo-form button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.4);
+}
+
+.submit-btn {
+  align-self: center;
+  padding: 6px 14px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.submit-btn.update {
+  background-color: #28a745;
+}
+
+.submit-btn.update:hover {
+  background-color: #218838;
+}
+
+span{
+  display: flex;
+  margin: 7px 0 0px 16px;
+}
+
+@media (max-width: 600px) {
+  .todo-form input,
+  .todo-form button {
+    width: 100%;
+  }
 }

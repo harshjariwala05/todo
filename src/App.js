@@ -17,6 +17,10 @@ function App() {
       alert("Title is required");
       return;
     }
+    if (!description) {
+      alert("Description is required");
+      return;
+    }
 
     const newItem = {
       title,
@@ -62,28 +66,34 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todo List</h1>
-      <form onSubmit={saveTodoList}>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-          autoFocus
-        />
-        <input
-          type="text"
-          name="description"
-          value={description}
-          placeholder="Description"
-          onChange={(e) => setDescription(e.target.value)}
-          autoFocus
-        />
-        <button>{editingIndex !== null ? "Update" : "Save"}</button>
-      </form>
+      <div className="form-container">
+        <h1 className="heading">Todo List</h1>
 
-      <div className="outside">
+        <form className="todo-form" onSubmit={saveTodoList}>
+          <input
+            type="text"
+            placeholder="Title"
+            name='title'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            autoFocus
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            name='description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+
+          />
+
+          <button className={`submit-btn ${editingIndex !== null ? "update" : ""}`}>
+            {editingIndex !== null ? "Update" : "Save"}
+          </button>
+        </form>
+      </div>
+
+      <div className="todo-container">
         <ul>{list}</ul>
       </div>
     </div>
@@ -91,4 +101,3 @@ function App() {
 }
 
 export default App;
-
