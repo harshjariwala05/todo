@@ -25,7 +25,7 @@ function App() {
     const newItem = {
       title,
       description,
-      status: "TO DO",
+      status: "IN PROGRESS",
     };
 
     if (editingIndex !== null) {
@@ -81,7 +81,7 @@ function App() {
           <input
             type="text"
             placeholder="Description"
-            name='description'
+            name='description'      
             value={description}
             onChange={(e) => setDescription(e.target.value)}
 
