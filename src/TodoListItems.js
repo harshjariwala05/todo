@@ -9,10 +9,16 @@ import { RiDeleteBinLine } from "react-icons/ri";
 function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
    const [status, setStatus] = useState(item.status || "IN PROGRESS");
    const [filter, setFilter] = useState("");
-   const [actionMenuState, toggleActionMenu] = useMenuState({ transition: true });
    const [statusMenuState, toggleStatusMenu] = useMenuState({ transition: true });
    const actionRef = useRef(null);
    const statusRef = useRef(null);
+   const [actionMenuState, setActionMenuState] = useState({ state: "closed" });
+
+   const toggleActionMenu = () => {
+      setActionMenuState((prev) => ({
+         state: prev.state === "open" ? "closed" : "open"
+      })); 
+   };     
 
    const updateStatus = (newStatus) => {
       setStatus(newStatus);
@@ -155,8 +161,8 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                fontSize: "20px",
                fontWeight: "600",
                marginBottom: "8px",
-               textDecoration: status === "COMPLETED" || status === "CLOSED" ? "line-through" : "none",
-               color: status === "COMPLETED" || status === "CLOSED" ? "#888" : "#333"
+               textDecoration: status === "CLOSED" ? "line-through" : "none",
+               color: status === "CLOSED" ? "#888" : "#333"
             }}>
                {item.title}
             </p>
@@ -167,7 +173,7 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                      fontSize: "17px",
                      color: "#555",
                      flex: 1,
-                     textDecoration: status === "COMPLETED" || status === "CLOSED" ? "line-through" : "none",
+                     textDecoration: status === "CLOSED" ? "line-through" : "none",
                   }}>
                   {item.description}
                </p>
@@ -175,13 +181,13 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
                   <span
                      ref={actionRef}
-                     onClick={() => toggleActionMenu(prev => prev === "open" ? false : true)}
+                     onClick={toggleActionMenu}
                      style={{
                         cursor: "pointer",
                         display: "inline-flex",
                         alignItems: "center",
                         gap: "6px",
-                        marginTop: '-15px',
+                        marginTop: "-15px",
                         fontWeight: "500",
                         fontSize: "17px",
                         color: "#007bff",
@@ -194,7 +200,7 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                   <ControlledMenu
                      {...actionMenuState}
                      anchorRef={actionRef}
-                     onClose={() => toggleActionMenu(false)}
+                     onClose={() => setActionMenuState({ state: "closed" })}
                      direction="right"
                   >
                      <MenuItem style={{ color: "green" }} onClick={() => handleEdit(indexNum)}>
@@ -208,6 +214,23 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                   </ControlledMenu>
                </div>
             </div>
+
+            {item.dueDate && (
+               <div
+                  style={{
+                     marginTop: "10px",
+                     padding: "6px 0px",
+                     borderRadius: "8px",
+                     fontSize: "14px",
+                     display: "inline-block",
+                     color: "#444",
+                     textDecoration: status === "CLOSED" ? "line-through" : "none",
+                     color: status === "CLOSED" ? "#888" : "#333"
+                  }}
+               >
+                  <strong>Due Date:</strong> {new Date(item.dueDate).toLocaleDateString("en-GB")}
+               </div>
+            )}
 
             <div
                className="status-text"
@@ -267,7 +290,7 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                      onChange={(e) => setFilter(e.target.value)}
                      style={{
                         width: "90%",
-                        margin: "0 auto 10px auto",
+                        margin: "10px auto 10px auto",
                         display: "block",
                         padding: "8px 12px",
                         fontSize: "14px",
