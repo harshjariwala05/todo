@@ -17,8 +17,8 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
    const toggleActionMenu = () => {
       setActionMenuState((prev) => ({
          state: prev.state === "open" ? "closed" : "open"
-      })); 
-   };     
+      }));
+   };
 
    const updateStatus = (newStatus) => {
       setStatus(newStatus);
@@ -77,14 +77,7 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                      .filter((s) => s.toLowerCase().includes(filter.toLowerCase()))
                      .map((statusOpt) => (
                         <MenuItem key={statusOpt} onClick={() => updateStatus(statusOpt)}>
-                           <div
-                              style={{
-                                 display: "flex",
-                                 justifyContent: "space-between",
-                                 alignItems: "center",
-                                 width: "100%"
-                              }}
-                           >
+                           <div className="flex justify-between items-center w-full" >
                               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                                  <div
                                     style={{
@@ -228,7 +221,12 @@ function TodoListItems({ item, indexNum, todoList, setTodoList, handleEdit }) {
                      color: status === "CLOSED" ? "#888" : "#333"
                   }}
                >
-                  <strong>Due Date:</strong> {new Date(item.dueDate).toLocaleDateString("en-GB")}
+                  <span style={{
+                     fontSize: "17px",
+                     color: "#555",
+                  }}>
+                     Due Date: {new Date(item.dueDate).toLocaleDateString("en-GB")}
+                  </span>
                </div>
             )}
 

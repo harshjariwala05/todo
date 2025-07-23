@@ -44,7 +44,7 @@ function App() {
       const updatedList = [...todoList];
       updatedList[editingIndex] = { ...updatedList[editingIndex], ...newItem };
       setTodoList(updatedList);
-      setEditingIndex(null);
+      setEditingIndex(null);  
     } else {
       const exists = todoList.some(item => item.title === title);
       if (!exists) {
@@ -93,7 +93,7 @@ function App() {
             autoFocus
           />
           <input
-            type="text"
+            type="text" 
             placeholder="Description"
             name="description"
             value={description}
